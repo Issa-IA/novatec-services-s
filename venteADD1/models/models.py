@@ -159,7 +159,7 @@ class SaleOrderHerit(models.Model):
     sale_leaser  = fields.Many2one( "typeleaser",string='Leaser')
     sale_finance = fields.Monetary(string="Montant financé")
     sale_frais_restitution = fields.Monetary(string="Frais de restitution",default=0.0)
-    sale_frais_restitution_1   = fields.Selection([('nul', "0 €"), ('other', "200 €")],string='Frais de restitution',default='nul')
+    sale_frais_restitution_1   = fields.Selection([('nul', "0.00 €"), ('other', "200.00 €")],string='Frais de restitution',default='nul')
     @api.onchange("sale_frais_restitution_1")
     def frais_restitution_update(self):
         for rec in self:
@@ -173,7 +173,7 @@ class SaleOrderHerit(models.Model):
     sale_loyer   = fields.Monetary(string="Loyer")
     sale_frais_livraison_new   = fields.Monetary(string="Frais de livraison",default=0.0)
     
-    sale_frais_livraison_new_1   = fields.Selection([('nul', "0 €"), ('other', "250 €")],string='Frais de livraison',default='nul')
+    sale_frais_livraison_new_1   = fields.Selection([('nul', "0.00 €"), ('other', "250.00 €")],string='Frais de livraison',default='nul')
     @api.onchange("sale_frais_livraison_new_1")
     def frais_livraison_update(self):
         for rec in self:
