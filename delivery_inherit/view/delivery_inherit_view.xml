@@ -10,8 +10,12 @@
                             <button name="button_validate" attrs="{'invisible': [('state', '!=', 'delivery')]}" string="Valider" type="object" class="oe_highlight" groups="stock.group_stock_user" data-hotkey="v"/>
                     </xpath>
                     <xpath expr="//button[@name='187']" position="after" >
-                             <button name="print_delivery" attrs="{'invisible': [('state', '=', 'delivery')]}" string="Bon livraison" type="object" class="oe_highlight"/>
-                             <button name="print_delivery" attrs="{'invisible': [('state', '!=', 'delivery')]}" string="Bon livraison" type="object"/>
+                             <button name="print_delivery" attrs="{'invisible': ['|',('state', '=', 'delivery'),('picking_type_id', '!=', 2)]}" string="Bon livraison" type="object" class="oe_highlight"/>
+                             <button name="print_delivery" attrs="{'invisible': ['|',('state', '!=', 'delivery'),('picking_type_id', '!=', 2)]}" string="Bon livraison" type="object"/>
+                    </xpath>
+                         <xpath expr="//button[@name='print_delivery']" position="after" >
+                             <button name="print_reprise" attrs="{'invisible': [('picking_type_id', '!=', 6)]}" string="Bon de reprise" type="object" class="oe_highlight"/>
+                          
                     </xpath>
                  <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
                         <page string="Signature" name="signture_livraison">
