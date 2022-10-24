@@ -158,12 +158,29 @@ class SaleOrderHerit(models.Model):
     sale_type    = fields.Selection([('location', 'Location'), ('vente', 'Vente')],string='Type',default='location')
     sale_leaser  = fields.Many2one( "typeleaser",string='Leaser')
     sale_finance = fields.Monetary(string="Montant financé")
-    sale_frais_restitution = fields.Monetary(string="Frais de restitution")
+    sale_frais_restitution = fields.Monetary(string="Frais de restitution",default=0.0)
+    sale_frais_restitution_1   = fields.Selection([('nul', "0 €"), ('other', "200 €")],string='Frais de restitution',default='nul')
+    @api.onchange("sale_frais_restitution_1")
+    def frais_restitution_update(self):
+        for rec in self:
+            if rec.sale_frais_restitution_1 == "nul":
+                rec.sale_frais_restitution = 0
+            if rec.sale_frais_restitution_1 == "other":
+                rec.sale_frais_restitution =200
     #group 2
     sale_duree   = fields.Integer(string="Durée")
     sale_accord  = fields.Char(string="N° d'accord")
     sale_loyer   = fields.Monetary(string="Loyer")
     sale_frais_livraison_new   = fields.Monetary(string="Frais de livraison",default=0.0)
+    
+    sale_frais_livraison_new_1   = fields.Selection([('nul', "0 €"), ('other', "250 €")],string='Frais de livraison',default='nul')
+    @api.onchange("sale_frais_livraison_new_1")
+    def frais_livraison_update(self):
+        for rec in self:
+            if rec.sale_frais_livraison_new_1 == "nul":
+                rec.sale_frais_livraison_new =0
+            if rec.sale_frais_livraison_new_1 == "other":
+                rec.sale_frais_livraison_new =250
     #group 3
     sale_periodicite = fields.Selection([('mens', 'Mensuelle'), ('trim', 'Trimestrielle ')], string='Periodicité')
     sale_reglement   = fields.Selection([('prelevement ', 'Prélevement'), ('mandat', 'Mandat administratif'),('virement', 'Virement '),('cheque', 'Chéque')], string='Mode de reglement')
