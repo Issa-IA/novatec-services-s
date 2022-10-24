@@ -13,3 +13,5 @@ class StockHerit(models.Model):
             self.write({'state': "delivery"})
         return self.env.ref('stock.action_report_delivery').report_action(self)
 
+    def print_reprise(self):
+        return self.env.ref('stock.action_report_delivery').report_action(self)
