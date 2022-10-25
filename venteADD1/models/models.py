@@ -326,6 +326,11 @@ class SaleOrderHerit(models.Model):
             'context': {'default_devis_dossier': self.id},
         }
 
+    sale_notifcation_ok = fields.Boolean(default=False,string="Approbation" )
+    def demande_confirmer_devis(self):
+        for rec in self:
+            if self.env.user.has_group('droits_d_acces.group_Technicien_contact'):
+                rec.sale_notifcation_ok = True
     def action_confirm(self):
         res = super(SaleOrderHerit, self).action_confirm()
         if self.partner_id:
