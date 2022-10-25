@@ -4,7 +4,21 @@
         <field name="name">sale.order.form.inherit1</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">                
+        <field name="arch" type="xml"> 
+            <xpath expr="//button[@name='action_confirm'][2]" position="after">
+                <button
+                    name="demande_confirmer_devis"
+                    string="Demande de confirmation"
+                    type="object"
+                    attrs="{'invisible': ['|',('state', 'not in', ('draft', 'sent')),('sale_notifcation_ok','=',True)]}"
+                    groups="droits_d_acces.group_Technicien_contact"    
+                />
+            </xpath>  
+             <xpath expr="//field[@name='name']" position="after">                
+                     <field name="sale_notifcation_ok" invisible="1"/>
+            </xpath> 
+                
+                
             <xpath expr="//field[@name='name']" position="after">
                 <label for="sale_dossier"/>
                      <field name="sale_dossier"/>
