@@ -28,6 +28,7 @@
         'views/stock_inherit.xml',
         #'views/goup_commercial.xml',
         'wizard/create_park.xml',
+        'security/security.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
