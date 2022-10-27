@@ -8,7 +8,7 @@
             <xpath expr="//button[@name='action_confirm'][2]" position="after">
                 <button
                     name="demande_confirmer_devis"
-                    string="Demande de confirmation"
+                    string="Demande de validation"
                     type="object"
                     attrs="{'invisible': ['|',('state', 'not in', ('draft', 'sent')),('sale_notifcation_ok','=',True)]}"
                     groups="droits_d_acces.group_Technicien_contact"    
