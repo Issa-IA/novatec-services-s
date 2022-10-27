@@ -134,11 +134,11 @@ class SaleOrderHerit(models.Model):
             else:
                 rec.zip_livraison = False
 
-    @api.onchange("partner_invoice_id")
+    @api.onchange("partner_shipping_id")
     def compute_city_livraison(self):
         for rec in self:
-            if rec.partner_invoice_id:
-                rec.city_livraison = rec.partner_invoice_id.city
+            if rec.partner_shipping_id:
+                rec.city_livraison = rec.partner_shipping_id.city
             else:
                 rec.city_livraison = False
 
