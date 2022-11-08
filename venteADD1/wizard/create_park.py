@@ -24,6 +24,10 @@ class StockHeritpicking(models.Model):
                         if fleet.fleet_serie == "False" and (record.lot_id.name not in list_fleet_numero_serie):
                             fleet.fleet_serie = record.lot_id.name
                             break
+                    for line in self.sale_id.order_line:
+                        if line.product_id.id == record.product_id.id and line.product_uom_qty == 1:
+                            line.order_line_serie = record.lot_id.name 
+                            break
 
 
 
