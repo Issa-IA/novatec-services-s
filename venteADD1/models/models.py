@@ -66,9 +66,9 @@ class SaleOrderHerit(models.Model):
     #fin montant de rachat
     
     sale_total_vente = fields.Monetary(string="Total vente",default=0.0,compute="sale_total_vente_func")
-    sale_marge  = fields.Monetary(compute="sale_marge_fuc",default=0.0, string="Marge commerciale",store=True)
+    sale_marge  = fields.Monetary(compute="sale_marge_fuc",default=0.0, string="Marge commerciale")
     sale_total_achat = fields.Monetary(string="Total vente", default=0.0, compute="sale_total_achat_func")
-    sale_marge_reel = fields.Monetary(default=0.0, string="Marge réelle", compute="sale_marge_reel_fuc",store=True)
+    sale_marge_reel = fields.Monetary(default=0.0, string="Marge réelle", compute="sale_marge_reel_fuc")
     sale_date_traitement = fields.Date("Date de traitement",compute="sale_total_date_traitement")
 
     ############ zip street city
